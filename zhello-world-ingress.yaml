@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: streamer-ingress
+  namespace: letmesee
+spec:
+  rules:
+  - host: streamer.defenders.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: streamer
+            port:
+              number: 3333
