@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-2
+  namespace: letmesee
+  labels:
+    app: hello-world-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-2
+  template:
+    metadata:
+      labels:
+        app: hello-world-2
+    spec:
+      containers:
+      - name: hello-world-2
+        image: randersonlemos/flaskhelloworld:latest
+        command: ["python", 'main.py', '--phrase', 'It is we!!!']
+        ports:
+        - containerPort: 81
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "80m"
+        volumeMounts:
+          - mountPath: "/app/data"
+            name: recorder-data
+      volumes:
+      - name: recorder-data
+        persistentVolumeClaim:
+          claimName: nfs-pvc
