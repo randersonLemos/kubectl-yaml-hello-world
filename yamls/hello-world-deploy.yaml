@@ -18,7 +18,7 @@ spec:
       containers:
       - name: hello-world
         image: randersonlemos/flaskhelloworld:latest
-        command: ["python", 'main.py', '--phrase', 'It is we!!!']
+        command: ["python", 'main.py', '--phrase', 'É nois!!!']
         ports:
         - containerPort: 80
         resources:
